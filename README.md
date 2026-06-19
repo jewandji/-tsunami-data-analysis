@@ -65,6 +65,16 @@ Clustering géographique des zones à risque avec **DBSCAN**.
 
 ---
 
+## Git — Cloner et synchroniser
+
+Commencer par cloner le dépôt puis se placer dans le dossier :
+
+```bash
+git clone https://github.com/jewandji/tsunami-data-analysis-I.git
+cd tsunami-data-analysis-I
+```
+---
+
 ## Installation
 
 ```powershell
