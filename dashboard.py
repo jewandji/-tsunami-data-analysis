@@ -301,7 +301,7 @@ def build_dashboard(df):
     for fig in [fig1, fig2, fig3, fig4]:
         html_content += plot(fig, output_type='div', include_plotlyjs='cdn')
 
-    with open('familyNameLeader_dashboard.html', 'w') as f:
+    with open('malou_dashboard.html', 'w') as f:
         f.write(html_content)
 
     return app
