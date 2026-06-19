@@ -36,10 +36,10 @@
 tsunami-data-analysis/
 ├── data/
 │   └── tsunami_dataset.csv          # Dataset NOAA
-├── tsunami_notebook.ipynb           # Notebook principal (KDD complet)
+├── malou_notebook.ipynb           # Notebook principal (KDD complet)
 ├── dashboard.py                     # Script du dashboard Python Dash
-├── familyNameLeader_dashboard.html  # Export HTML du dashboard
-├── presentation_tsunami.pptx        # Slides de présentation
+├── malou_dashboard.html  # Export HTML du dashboard
+├── malou_slides.pdf        # Slides de présentation
 ├── README.md
 └── .gitignore
 ```
@@ -48,19 +48,19 @@ tsunami-data-analysis/
 
 ## Indicateurs construits
 
-### Indicateur 1 — Groupement [1 pt]
+### Indicateur 1 — Groupement
 Top 10 des pays les plus touchés par des tsunamis confirmés.  
 Méthode : `groupby('COUNTRY').size().sort_values().head(10)`
 
-### Indicateur 2 — Frequent Pattern Mining [2 pts]
+### Indicateur 2 — Frequent Pattern Mining
 Règles d'association entre la cause, la région et le niveau de dégâts via l'algorithme **Apriori**.  
 Paramètres : `min_support=0.05`, `min_confidence=0.40`, tri par lift.  
 Exemple : *Earthquake + Pacific → Damage Extreme* (lift 2.3)
 
-### Indicateur 3 — Analyse temporelle [2 pts]
+### Indicateur 3 — Analyse temporelle
 Évolution du nombre de tsunamis confirmés par décennie depuis 1800, avec prévision par **régression polynomiale** (degré 2) sur 3 décennies.
 
-### Indicateur 4 — Analyse spatiale [2 pts]
+### Indicateur 4 — Analyse spatiale
 Clustering géographique des zones à risque avec **DBSCAN** (`eps=5.0°`, `min_samples=5`).  
 Résultats : 4 clusters principaux identifiés (Japon/Russie, Indonésie/Philippines, Chili/Pérou, côte Pacifique USA) + carte interactive Folium.
 
@@ -95,7 +95,7 @@ Le dashboard Python Dash affiche les 4 indicateurs de manière interactive :
 - **Ind. 3** — Bar chart : évolution par décennie + prévision
 - **Ind. 4** — Carte scatter_geo : clusters DBSCAN colorés par zone
 
-Un export statique est disponible dans `familyNameLeader_dashboard.html`.
+Un export statique est disponible dans `malou_dashboard.html`.
 
 ---
 
