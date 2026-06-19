@@ -1,6 +1,6 @@
 # Analyse des Tsunamis Historiques
 
-> Projet final — Data Analysis (MACSIN4A2225) | Hugo ALATRISTA-SALAS | ESILV
+> Projet final – Data Analysis (MACSIN4A2225) | ESILV
 
 ## Équipe
 
@@ -12,9 +12,12 @@
 
 ---
 
+## Projet
+Analyse interactive des données historiques de tsunamis à l'aide d'un dashboard Dash.
+
 ## Dataset
 
-**Tsunami Historical Data — NOAA / Kaggle**
+**Tsunami Historical Data – NOAA / Kaggle**
 
 - 2 259 événements tsunamigènes recensés
 - Période couverte : 330 av. J-C → 2020
@@ -23,7 +26,7 @@
 ### Dimensions multidimensionnelles
 
 | Dimension | Colonnes clés |
-|-----------|--------------|
+|-----------|---------------|
 | Temporelle | `YEAR`, `MONTH`, `DAY`, `HOUR`, `MINUTE` |
 | Spatiale | `LATITUDE`, `LONGITUDE`, `COUNTRY`, `REGION` |
 | Analytique | `CAUSE`, `EQ_MAGNITUDE`, `DEATHS_TOTAL`, `DAMAGE_TOTAL` |
@@ -49,57 +52,49 @@ tsunami-data-analysis/
 ## Indicateurs construits
 
 ### Indicateur 1 — Groupement
-Top 10 des pays les plus touchés par des tsunamis confirmés.  
-Méthode : `groupby('COUNTRY').size().sort_values().head(10)`
+Top 10 des pays les plus touchés par des tsunamis confirmés.
 
 ### Indicateur 2 — Frequent Pattern Mining
-Règles d'association entre la cause, la région et le niveau de dégâts via l'algorithme **Apriori**.  
-Paramètres : `min_support=0.05`, `min_confidence=0.40`, tri par lift.  
-Exemple : *Earthquake + Pacific → Damage Extreme* (lift 2.3)
+Règles d'association entre la cause, la région et le niveau de dégâts via l'algorithme **Apriori**.
 
 ### Indicateur 3 — Analyse temporelle
-Évolution du nombre de tsunamis confirmés par décennie depuis 1800, avec prévision par **régression polynomiale** (degré 2) sur 3 décennies.
+Évolution du nombre de tsunamis confirmés par décennie depuis 1800.
 
 ### Indicateur 4 — Analyse spatiale
-Clustering géographique des zones à risque avec **DBSCAN** (`eps=5.0°`, `min_samples=5`).  
-Résultats : 4 clusters principaux identifiés (Japon/Russie, Indonésie/Philippines, Chili/Pérou, côte Pacifique USA) + carte interactive Folium.
+Clustering géographique des zones à risque avec **DBSCAN**.
 
 ---
 
 ## Installation
 
-```bash
-# 1. Cloner le repo
-git clone https://github.com/jewandji/tsunami-data-analysis-l.git
-cd tsunami-data-analysis-l
-
-# 2. Installer les dépendances
-pip install pandas numpy matplotlib seaborn folium scikit-learn mlxtend dash plotly
-
-# 3. Lancer le notebook
-jupyter notebook tsunami_notebook.ipynb
-
-# 4. Lancer le dashboard (dans un terminal séparé)
-python dashboard.py
-# puis ouvrir http://127.0.0.1:8050
+```powershell
+python -m pip install dash plotly pandas scikit-learn mlxtend
 ```
+
+> Optionnel : le script propose aussi une installation automatique des dépendances via `python dashboard.py --install-deps`.
 
 ---
 
-## Dashboard
+## Utilisation
 
-Le dashboard Python Dash affiche les 4 indicateurs de manière interactive :
+```powershell
+python dashboard.py
+```
 
-- **Ind. 1** — Bar chart horizontal : Top 10 pays
-- **Ind. 2** — Tableau Apriori : Top 10 règles (support / confiance / lift)
-- **Ind. 3** — Bar chart : évolution par décennie + prévision
-- **Ind. 4** — Carte scatter_geo : clusters DBSCAN colorés par zone
+Puis ouvrir le navigateur à l’adresse : `http://127.0.0.1:8050`.
 
-Un export statique est disponible dans `malou_dashboard.html`.
+Le script génère également un fichier `malou_dashboard.html` dans le répertoire du projet.
+
+---
+
+## Notes
+- Le dataset doit rester présent dans `data/tsunami_dataset.csv`.
+- Le dashboard utilise `Dash`, `Plotly`, `pandas`, `scikit-learn` et `mlxtend`.
 
 ---
 
 ## Usage des LLM
 
-Certaines parties du code ont été développées avec l'assistance de **Claude (Anthropic)**.  
+Certaines parties du code ont été développées avec l'assistance de Claude (Anthropic).  
 Les prompts sont documentés dans les cellules markdown du notebook.
+
